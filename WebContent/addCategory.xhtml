@@ -7,9 +7,12 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-	<title>
-		Warehouse Contents
-	</title>
+	<c:if test="#{categories.editedCategory==null}">
+		<title>Category Creation</title>
+	</c:if>
+	<c:if test="#{categories.editedCategory!=null}">
+		<title>Category Editing</title>
+	</c:if>
 	
 	<h:outputStylesheet library="css" name="bootstrap.min.css"  />
 	<h:outputStylesheet library="css" name="styles4.css"  />
