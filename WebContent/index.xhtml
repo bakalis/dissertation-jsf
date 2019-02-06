@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>
+		Warehouse Contents
+	</title>
+	
+	<h:outputStylesheet library="css" name="bootstrap.min.css"  />
+	<h:outputStylesheet library="css" name="styles4.css"  />
+</h:head>
+<h:body>
+	
+
+	<ui:include src="navbar.xhtml"></ui:include>
+
+
+	<div class="container-fluid">
+		<div class="content-wrapper">
+			<h1 class="text-center pageTitle">Warehouse Current Contents</h1> 
+			<c:if test="#{error.error!=null}">
+				<div class="alert alert-danger text-center">
+				#{error.error}
+				</div>
+			</c:if>
+			<h:form method="post">
+					<div class="form-row searchRow">
+						<div class="col-lg-10">
+							<h:inputText value="#{contents.searchBar}" class="searchBar"></h:inputText>
+						</div>
+						<div class="col-lg-1">
+							<h:selectOneMenu value="#{contents.searchFilter}" class="searchFilter" required="true">
+						        <f:selectItem itemValue="id" itemLabel = "By Product Id" />
+						        <f:selectItem itemValue="name" itemLabel = "By Product Name"/>
+						        <f:selectItem itemValue="category" itemLabel = "By Category"/>
+						        <f:selectItem itemValue="code" itemLabel = "By Storage Code"/>
+						    </h:selectOneMenu>
+						</div>
+						<div class="col-lg-1">
+							<h:commandButton value="Search!" class="btn searchBtn" action="#{contents.getSearchedContents()}" />
+						</div>
+					</div>	
+			</h:form>
+			<div class="row">
+				<div class="col-lg-12">
+					<table class="table table-dark">
+						<thead>
+						    <tr>
+						      <th>#</th>
+						      <th>Product Id</th>
+						      <th>Product Name</th>
+						      <th>Category</th>
+						      <th>Quantity</th>
+						      <th>Storage Code</th>
+						      
+						    </tr>
+  						</thead>
+  						<c:if test="#{!contents.searched}">
+							<ui:repeat var="product" value="#{contents.getContents()}" varStatus="status">
+								<tr>
+									<td>#{status.index+1}</td>
+							     	<td>#{product.getId()}</td>
+							      	<td>#{product.getProductName()}</td>
+							      	<td>#{product.getCategory().getCategoryName()}</td>
+							      	<td>#{product.getQuantity()}</td>
+							      	<td>#{product.getStorageCode()}</td>
+								</tr>
+							</ui:repeat>
+						</c:if>
+						<c:if test="#{contents.searched}">
+							<ui:repeat var="product" value="#{contents.getSearchedContents()}" varStatus="status">
+								<tr>
+									<td>#{status.index+1}</td>
+							     	<td>#{product.getId()}</td>
+							      	<td>#{product.getProductName()}</td>
+							      	<td>#{product.getCategory().getCategoryName()}</td>
+							      	<td>#{product.getQuantity()}</td>
+							      	<td>#{product.getStorageCode()}</td>
+								</tr>
+							</ui:repeat>
+						</c:if>
+					</table>
+				</div>	
+			</div>
+
+		</div>
+
+	</div>	
+
+	
+
+<h:outputScript name="js/jquery.min.js" target="body" />
+<h:outputScript name="js/popper.min.js" target="body" />
+<h:outputScript name="js/bootstrap.min.js" target="body" />
+
+
+</h:body>
+</html>

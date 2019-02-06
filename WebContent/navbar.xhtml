@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<h:html xmlns="https://www.w3.org/1999/xhtml"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head></h:head>
+<h:body>
+	<ui:composition>
+
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			  <div class="container-fluid navbarId">
+			  	<h:link value = "Bakalis Apps" outcome = "index" class="navbar-brand"/>
+			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarResponsive">
+			      <ul class="navbar-nav ml-auto">
+			       <li class="nav-item dropdown">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          Information
+				        </a>
+				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <h:link value = "Warehouse Contents" outcome = "index" class="dropdown-item"/>
+				          <h:link value = "Transactions" outcome = "transactions" class="dropdown-item"/>
+				        </div>
+			      </li>
+			      <li class="nav-item dropdown">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          Management
+				        </a>
+				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <h:link value = "Add Products" outcome = "entry" class="dropdown-item"/>
+				          <h:link value = "Retrieve Products" outcome = "retrieval" class="dropdown-item"/>
+				          <h:link value = "Manage Categories" outcome = "categories" class="dropdown-item"/>
+				          <h:link value = "Manage Clients" outcome = "clients" class="dropdown-item"/>
+				        </div>
+			      </li>
+			      <li class="nav-item">
+			          <a href="file:///E:/Angular/spring/login.html" class="nav-link">Login</a>
+			      </li>
+			      </ul>
+			    </div>
+			  </div>
+		</nav>
+
+	</ui:composition>
+</h:body>
+</h:html>

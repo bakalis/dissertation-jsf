@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>
+		Product Retrieval
+	</title>
+	
+	<h:outputStylesheet library="css" name="bootstrap.min.css"  />
+	<h:outputStylesheet library="css" name="styles4.css"  />
+</h:head>
+<h:body>
+	
+
+	<ui:include src="navbar.xhtml"></ui:include>
+	
+
+
+	<div class="container-fluid">
+		<div class="content-wrapper">
+			<h1 class="text-center pageTitle">Product Retrieval</h1>
+			<c:if test="#{error.error!=null}">
+				<div class="alert alert-danger text-center">
+				#{error.error}
+				</div>
+			</c:if>
+			<div class="form-wrapper"> 
+				<h:form class="transactionForm" method="post">
+					  <div class="form-group row">
+					    <label for="productId" class="col-sm-2 col-form-label">Product Id:</label>
+					    <div class="col-lg-10">
+					      <h:inputText value="#{transactions.productId}" a:placeholder="Insert Product Id here" class="form-control"></h:inputText>					    
+					    </div>
+					  </div>
+					  <div class="form-group row">
+					    <label for="productName" class="col-sm-2 col-form-label">Product Name:</label>
+					    <div class="col-lg-10">
+					      <h:inputText value="#{transactions.productName}" a:placeholder="Insert Product Name here" class="form-control"></h:inputText>
+					    </div>
+					  </div>
+					  <div class="form-group row">
+						  <label for="categoryFilter" class="col-sm-2 col-form-label">Category:</label>
+						  <div class="col-lg-10">
+						  	<h:selectOneMenu value="#{transactions.category}" class="categoryFilter" required="true">
+						        <c:forEach items="#{categories.getCategories()}" var="category">
+						        	<f:selectItem itemValue="#{category.id}" itemLabel = "#{category.categoryName}" />
+						        </c:forEach>
+						    </h:selectOneMenu>
+						  </div>
+					  </div>
+					  <div class="form-group row">
+						  <label for="clientFilter" class="col-sm-2 col-form-label">Client:</label>
+						  <div class="col-lg-10">
+						    <h:selectOneMenu value="#{transactions.client}" class="clientFilter" required="true">
+						        <c:forEach items="#{clients.getClients()}" var="client">
+						        	<f:selectItem itemValue="#{client.id}" itemLabel = "#{client.clientName}" />
+						        </c:forEach>
+						    </h:selectOneMenu>						  </div>
+					  </div>
+					  <div class="form-group row">
+						  <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+						  <div class="col-lg-10">
+						  		<h:inputText value="#{transactions.quantity}" a:placeholder="Enter Quantity here" class="form-control"></h:inputText>
+						  </div>
+					  </div>
+					  <div class="form-group row">
+					    <label for="code" class="col-sm-2 col-form-label">Storage Code</label>
+					    <div class="col-lg-10">
+					      <h:inputText value="#{transactions.code}" a:placeholder="Enter Storage Code here" class="form-control"></h:inputText>
+					    </div>
+					  </div>
+
+					  <div class="form-group row">
+					    <div class="col-lg-10 btnRow">
+					      <h:commandButton value="Retrieve Products" class="btn btn-inverse" action="#{transactions.manageRetrieval()}" />
+					    </div>
+					  </div>
+
+				</h:form>
+			</div>
+		</div>
+
+	</div>	
+
+	
+
+
+<h:outputScript name="js/jquery.min.js" target="body" />
+<h:outputScript name="js/popper.min.js" target="body" />
+<h:outputScript name="js/bootstrap.min.js" target="body" />
+
+
+</h:body>
+</html>
