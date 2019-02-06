@@ -4,7 +4,8 @@
 <h:html xmlns="https://www.w3.org/1999/xhtml"
 		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://xmlns.jcp.org/jsf/html">
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head></h:head>
 <h:body>
 	<ui:composition>
@@ -38,7 +39,14 @@
 				        </div>
 			      </li>
 			      <li class="nav-item">
-			          <a href="file:///E:/Angular/spring/login.html" class="nav-link">Login</a>
+			      <c:if test="#{auth.auth.getName()=='anonymousUser'}">
+						<h:link value = "Login" outcome = "login" class="nav-link"/>
+				  </c:if>
+			      <c:if test="#{auth.auth.getName()!='anonymousUser'}">
+			      <h:form method="post">
+			      		<h:commandLink value="Logout" class="nav-link" action="#{auth.logout()}" />
+			      </h:form>
+				  </c:if>
 			      </li>
 			      </ul>
 			    </div>
