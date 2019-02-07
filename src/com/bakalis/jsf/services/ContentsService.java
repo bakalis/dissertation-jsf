@@ -83,7 +83,9 @@ public class ContentsService {
 						crit.add(Restrictions.eq("category.id", cat.getId()));
 						ArrayList<Product> prods = (ArrayList<Product>) crit.list();
 						if(prods!=null){
-							products.add(prods.get(0));
+							for(Product prod : prods){
+								products.add(prod);
+							}
 						}
 					}
 				}
